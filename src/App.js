@@ -1,13 +1,22 @@
-import Video from './components/Video';
-import './App.css';
-
+import Video from "./components/Video";
+import videos from "./data/data";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello World</h1>
-      <Video bgColor="red" title="React JS Tutorial Video" />
-      <Video bgColor="green" title="Node JS Tutorial Video" />
+      <div>Videos</div>
+      {videos.map((video) => (
+        <Video
+          key={video.id}
+          title={video.title}
+          views={video.views}
+          time={video.time}
+          channel={video.channel}
+          verified={video.verified}
+          id={video.id}
+        ></Video>
+      ))}
     </div>
   );
 }

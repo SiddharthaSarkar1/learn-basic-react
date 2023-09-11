@@ -1,14 +1,22 @@
 import React from "react";
 import './Video.css';
 
-const Video = ({title, bgColor}) => {
+const Video = ({title,id,channel="hello Channel",views,time,verified}) => {
     // console.log(props);
     const bg = 'dark';
   return (
     <>
-    <img src="https://placebear.com/640/360" alt="" />
-    <div className={bg} style={{ backgroundColor: bgColor }}>{title}</div>
-</>
+    <div className='container'>
+    <div className="pic">
+    <img src={`https://picsum.photos/id/${id}/160/90`} alt="Katherine Johnson" />
+    </div>
+    <div className="title">{title}</div>
+    <div className="channel">{channel} {verified && '✅'} </div>
+    <div className="views">
+      {views} views <span>.</span> {time}
+    </div>
+    </div>
+    </>
   );
 };
 
