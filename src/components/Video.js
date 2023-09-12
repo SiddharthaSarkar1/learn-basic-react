@@ -1,8 +1,9 @@
 import React from "react";
 import './Video.css';
 
-const Video = ({title,id,channel="hello Channel",views,time,verified}) => {
+const Video = ({title,id,channel="hello Channel",views,time,verified,children}) => {
     // console.log(props);
+    // console.log(children);
     const bg = 'dark';
   return (
     <>
@@ -14,6 +15,9 @@ const Video = ({title,id,channel="hello Channel",views,time,verified}) => {
     <div className="channel">{channel} {verified && '✅'} </div>
     <div className="views">
       {views} views <span>.</span> {time}
+    </div>
+    <div>
+      {children}
     </div>
     </div>
     </>
