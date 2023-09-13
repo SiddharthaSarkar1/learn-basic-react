@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 const Counter = () => {
-
+    //This is just for example this component has no impact in our react app
     const [number, setNumber] = useState(0);
 
     const handleClick = () => {
