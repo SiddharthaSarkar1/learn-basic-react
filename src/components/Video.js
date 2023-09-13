@@ -2,6 +2,7 @@ import React from "react";
 import './Video.css';
 
 const Video = ({title,id,channel="hello Channel",views,time,verified,children}) => {
+  console.log("Render Video");
     // console.log(props);
     // console.log(children);
     const bg = 'dark';

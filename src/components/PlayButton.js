@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './PlayButton.css';
 
 const PlayButton = ({message, children, onPlay, onPause}) => {
+  console.log("Render PlayButton");
 
-    let playing = false; //This is a wrong approach dont use this
+    // let playing = false; //This is a wrong approach dont use this
+
+    const [playing, setPlaying] = useState(false);
 
     const handleClick = () => {
         // console.log(message);
@@ -12,12 +15,12 @@ const PlayButton = ({message, children, onPlay, onPause}) => {
         if(playing) onPause();
         else onPlay();
 
-        playing = !playing;
+        setPlaying(!playing);
     }
 
   return (
     <div>
-    <button onClick={handleClick}>{children}</button> 
+    <button onClick={handleClick}>{children} : {playing?'⏸️':'⏯️'}</button> 
     </div>
   )
 }
