@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './AddVideo.css';
 
-const AddVideo = ({addVideos}) => {
+const AddVideo = ({addVideos, updateVideo, editableVideo}) => {
     console.log("render AddVideo")
 
     const initialVideoState = {
@@ -22,7 +22,12 @@ const AddVideo = ({addVideos}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();//This is to prevent default form submitting functionality
-        addVideos(video);
+
+        if(editableVideo){
+            updateVideo(video);
+        }else{
+            addVideos(video);
+        }
         // console.log(video);
         setVideo(initialVideoState);
     }
@@ -35,23 +40,21 @@ const AddVideo = ({addVideos}) => {
         // console.log(video);
     }
 
+    useEffect(() => {
+        if(editableVideo){
+            setVideo(editableVideo);
+        }
+        console.log('useEffect');
+    },[editableVideo]);
+    
+
   return (
     <form>
         <input type="text" name="title" onChange={handleChange} placeholder='title' value={video.title} />
         <input type="text" name="views" onChange={handleChange} placeholder='views' value={video.views} />
         <button onClick={handleSubmit}
-        // <button onClick={()=>{
-        //    setVideos( [...videos,{ 
-        //     id:videos.length+1,
-        //     title: 'Demo JS tutorial',
-        //     views: '1M',
-        //     time: '1 month ago',
-        //     channel: 'Hello Dost',
-        //     verified: true
-        //   }]);
-        // }}
         >
-        Add Video
+        {editableVideo?'Edit':'Add'} Video
         </button>
     </form>
   )

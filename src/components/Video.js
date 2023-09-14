@@ -1,7 +1,7 @@
 import React from "react";
 import './Video.css';
 
-const Video = ({title,id,channel="hello Channel",views,time,verified,children, deleteVideo}) => {
+const Video = ({title,id,channel="hello Channel",views,time,verified,children, deleteVideo, editVideo}) => {
   console.log("Render Video");
     // console.log(props);
     // console.log(children);
@@ -10,6 +10,7 @@ const Video = ({title,id,channel="hello Channel",views,time,verified,children, d
     <>
     <div className='container'>
     <button className="close" onClick={() => deleteVideo(id)}>X</button>
+    <button className="edit" onClick={() => editVideo(id)}>Edit</button>
     <div className="pic">
     <img src={`https://picsum.photos/id/${id}/160/90`} alt="Katherine Johnson" />
     </div>
