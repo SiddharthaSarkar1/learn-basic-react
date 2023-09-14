@@ -21,7 +21,7 @@ const AddVideo = ({addVideos}) => {
     });
 
     const handleSubmit = (e) => {
-        e.preventDefault();//Tjis is to prevent default form submitting functionality
+        e.preventDefault();//This is to prevent default form submitting functionality
         addVideos(video);
         // console.log(video);
         setVideo(initialVideoState);

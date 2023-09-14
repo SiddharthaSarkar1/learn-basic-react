@@ -14,6 +14,11 @@ function App() {
           {...video, id: videos.length+1}
     ]);
   }
+
+  const deleteVideo = (id) => {
+    setVideos(videos.filter(video => video.id !== id));
+    console.log(id);
+  }
   
   return (
    <div className="App">
@@ -21,7 +26,7 @@ function App() {
       <div>
         <AddVideo addVideos={addVideos}></AddVideo>
       </div>
-      <VideoList videos={videos}></VideoList>
+      <VideoList deleteVideo={deleteVideo} videos={videos}></VideoList>
       
       {/* <div style={{clear: 'both'}}> */}
         {/* <PlayButton message="Play-message" onPlay={() => console.log('Playyyy')} onPause={() => console.log('Pauseeee')}>Play</PlayButton> */}
