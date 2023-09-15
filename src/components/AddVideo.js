@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './AddVideo.css';
 
-const AddVideo = ({addVideos, updateVideo, editableVideo}) => {
+const AddVideo = ({dispatch, editableVideo}) => {
     console.log("render AddVideo")
 
     const initialVideoState = {
@@ -24,9 +24,9 @@ const AddVideo = ({addVideos, updateVideo, editableVideo}) => {
         e.preventDefault();//This is to prevent default form submitting functionality
 
         if(editableVideo){
-            updateVideo(video);
+            dispatch({type:'UPDATE', payload: video});
         }else{
-            addVideos(video);
+            dispatch({type:'ADD', payload: video});
         }
         // console.log(video);
         setVideo(initialVideoState);
