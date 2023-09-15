@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Video from './Video';
 import PlayButton from './PlayButton';
+import VideosContext from '../context/VideosContext';
+import ThemeContext from '../context/ThemeContext';
+import useVideos from '../hooks/Videos';
 
-const VideoList = ({videos, dispatch, editVideo}) => {
+const VideoList = ({editVideo}) => {
+
+  const themeContext = useContext(ThemeContext);
+  console.log({ themeContext });
+
+  // const videos = useContext(VideosContext);
+  const videos = useVideos();
   return (
       <>
     {videos.map((video) => (
@@ -16,7 +25,6 @@ const VideoList = ({videos, dispatch, editVideo}) => {
           id={video.id}
           // deleteVideo={deleteVideo}
           editVideo={editVideo}
-          dispatch={dispatch}
           >
           <PlayButton 
           onPlay={() => console.log('Playing..'+ video.title)} 

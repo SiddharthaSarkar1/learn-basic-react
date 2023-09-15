@@ -1,24 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import VideoDispatchContext from '../context/VideoDispatchContext';
+import useVideoDispatch from '../hooks/VideoDispatch';
 import './AddVideo.css';
 
-const AddVideo = ({dispatch, editableVideo}) => {
-    console.log("render AddVideo")
+const initialVideoState = {
+    time: '1 month ago',
+    channel: 'Hello Dost',
+    verified: true,
+    title: '',
+    views: ''
+}
 
-    const initialVideoState = {
-        time: '1 month ago',
-        channel: 'Hello Dost',
-        verified: true,
-        title: '',
-        views: ''
-    }
 
-    const [video, setVideo] = useState({
-        time: '1 month ago',
-        channel: 'Hello Dost',
-        verified: true,
-        title: '',
-        views: ''
-    });
+
+const AddVideo = ({editableVideo}) => {
+    // console.log("render AddVideo")
+    const [video, setVideo] = useState(initialVideoState);
+    // const dispatch = useContext(VideoDispatchContext);//now we are able to access globally using context
+
+
+    const dispatch = useVideoDispatch(); //Custom hook we have created
 
     const handleSubmit = (e) => {
         e.preventDefault();//This is to prevent default form submitting functionality

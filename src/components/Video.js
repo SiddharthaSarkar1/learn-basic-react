@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import VideoDispatchContext from "../context/VideoDispatchContext";
+import useVideoDispatch from "../hooks/VideoDispatch";
 import './Video.css';
 
-const Video = ({title,id,channel="hello Channel",views,time,verified,children, dispatch, editVideo}) => {
-  console.log("Render Video");
+const Video = ({title,id,channel="hello Channel",views,time,verified,children, editVideo}) => {
+  // console.log("Render Video");
+
+  // const dispatch = useContext(VideoDispatchContext);
+  const dispatch = useVideoDispatch();
     // console.log(props);
     // console.log(children);
     const bg = 'dark';
