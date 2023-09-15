@@ -1,8 +1,9 @@
-import { useState, useReducer } from 'react';
+import { useState, useReducer, useContext } from 'react';
 import videosDB from "./data/data";
 import "./App.css";
 import AddVideo from './components/AddVideo';
 import VideoList from './components/VideoList';
+import ThemeContext from './context/ThemeContext';
 
 function App() {
   // console.log("Render App");
@@ -30,6 +31,12 @@ function App() {
   }
 
   const [videos, dispatch] = useReducer(videoReducer, videosDB);
+
+  const [mode, setMode] = useState('darkMode');
+
+  //Using the context -
+  const themeContext = useContext(ThemeContext);
+  console.log({themeContext});
 
   // const [videos, setVideos] = useState(videosDB);
 
@@ -66,8 +73,9 @@ function App() {
   // }
   
   return (
-   <div className="App">
-
+    <ThemeContext.Provider value={mode}>
+   <div className={`App ${mode}`}>
+      <button onClick={() => setMode(mode === 'darkMode' ? 'lightMode' : 'darkMode')}>Mode</button>
       <div>
         <AddVideo dispatch={dispatch} editableVideo={editableVideo}></AddVideo>
       </div>
@@ -81,6 +89,7 @@ function App() {
       {/* <Counter></Counter> */}
 
     </div>
+    </ThemeContext.Provider>
   );
 }
 
