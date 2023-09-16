@@ -15,6 +15,8 @@ function App() {
 
   const videoReducer = (videos, action) => {
     switch (action.type) {
+      case "LOAD":
+        return action.payload;
       case "ADD":
         return [...videos, { ...action.payload, id: videos.length + 1 }];
       case "DELETE":
@@ -31,7 +33,7 @@ function App() {
   };
 
 
-  const [videos, dispatch] = useReducer(videoReducer, videosDB);
+  const [videos, dispatch] = useReducer(videoReducer, []);
 
   const [mode, setMode] = useState("darkMode");
 
