@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import VideoDispatchContext from '../context/VideoDispatchContext';
 import useVideoDispatch from '../hooks/VideoDispatch';
 import './AddVideo.css';
@@ -20,6 +20,8 @@ const AddVideo = ({editableVideo}) => {
 
 
     const dispatch = useVideoDispatch(); //Custom hook we have created
+
+    let inputRef = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();//This is to prevent default form submitting functionality
@@ -46,12 +48,23 @@ const AddVideo = ({editableVideo}) => {
             setVideo(editableVideo);
         }
         console.log('useEffect');
+        //using useRef hook
+        // inputRef.current.value = "DEMO TEST";
+        // inputRef.current.focus();
+
+        inputRef.current.placeholder = "";
+        "Type here".split('').forEach((char, i) => {
+            setTimeout(() => {
+                inputRef.current.placeholder = inputRef.current.placeholder + char;
+            }, 1000 * i);
+        })
+
     },[editableVideo]);
     
 
   return (
     <form>
-        <input type="text" name="title" onChange={handleChange} placeholder='title' value={video.title} />
+        <input ref={inputRef} type="text" name="title" onChange={handleChange} placeholder='title' value={video.title} />
         <input type="text" name="views" onChange={handleChange} placeholder='views' value={video.views} />
         <button onClick={handleSubmit}
         >
