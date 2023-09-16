@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import VideoDispatchContext from "../context/VideoDispatchContext";
 import useVideoDispatch from "../hooks/VideoDispatch";
 import './Video.css';
@@ -8,6 +8,18 @@ const Video = ({title,id,channel="hello Channel",views,time,verified,children, e
 
   // const dispatch = useContext(VideoDispatchContext);
   const dispatch = useVideoDispatch();
+
+  useEffect(() => {
+    const idx = setInterval(() => {
+      console.log("Video playing " + id);
+    }, 3000)
+
+    return () => {
+      clearInterval(idx);
+    }
+  }, [id])
+  
+
     // console.log(props);
     // console.log(children);
     const bg = 'dark';
