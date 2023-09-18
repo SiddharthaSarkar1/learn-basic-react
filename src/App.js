@@ -1,4 +1,4 @@
-import { useState, useReducer, useContext } from "react";
+import { useState, useReducer, useContext, useCallback } from "react";
 import videosDB from "./data/data";
 import "./App.css";
 import AddVideo from "./components/AddVideo";
@@ -9,7 +9,7 @@ import VideoDispatchContext from "./context/VideoDispatchContext";
 import Counter from './components/Counter';
 
 function App() {
-  // console.log("Render App");
+  console.log("Render App");
 
   const [editableVideo, setEditableVideo] = useState(null);
 
@@ -56,11 +56,12 @@ function App() {
   //   // console.log(id);
   //   dispatch({type:'DELETE', payload: id});
   // }
-
-  const editVideo = (id) => {
-    setEditableVideo(videos.find((video) => video.id === id));
-    console.log(id);
-  };
+  const editVideo = useCallback(
+    function editVideo(id){
+      setEditableVideo(videos.find((video) => video.id === id));
+      console.log(id);
+    }, [videos]);
+  
 
   // const updateVideo = (video) => {
   //   // console.log(video);

@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, memo} from "react";
 import VideoDispatchContext from "../context/VideoDispatchContext";
 import useVideoDispatch from "../hooks/VideoDispatch";
 import './Video.css';
 
-const Video = ({title,id,channel="hello Channel",views,time,verified,children, editVideo}) => {
-  // console.log("Render Video");
+const Video = memo(function Video({title,id,channel="hello Channel",views,time,verified,children, editVideo}){
+  console.log("Render Video");
 
   // const dispatch = useContext(VideoDispatchContext);
   const dispatch = useVideoDispatch();
@@ -42,6 +42,6 @@ const Video = ({title,id,channel="hello Channel",views,time,verified,children, e
     </div>
     </>
   );
-};
+});
 
 export default Video;

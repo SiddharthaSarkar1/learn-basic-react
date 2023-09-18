@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, memo} from 'react';
 import './PlayButton.css';
 
-const PlayButton = ({message, children, onPlay, onPause}) => {
+const PlayButton = memo(function PlayButton({message, children, onPlay, onPause}){
   console.log("Render PlayButton");
 
     // let playing = false; //This is a wrong approach dont use this
@@ -23,6 +23,6 @@ const PlayButton = ({message, children, onPlay, onPause}) => {
     <button onClick={handleClick}>{children} : {playing?'⏸️':'⏯️'}</button> 
     </div>
   )
-}
+});
 
 export default PlayButton
